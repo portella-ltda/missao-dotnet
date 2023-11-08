@@ -26,7 +26,7 @@ namespace Missaol.Application.Cliente
             .DependentRules(() =>
             {
                 RuleFor(request => request)
-                .Must(request => db.Produtos.Any(cliente => cliente.Code == request.Produto))
+                .Must(request => db.Produtos.Any(produto => produto.Code == request.Produto))
                 .WithName("Produto")
                 .WithMessage("Não encontrado");
             });
