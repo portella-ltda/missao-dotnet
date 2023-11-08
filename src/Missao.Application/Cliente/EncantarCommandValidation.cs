@@ -29,7 +29,7 @@ namespace Missaol.Application.Cliente
                 .Must(request => db.Produtos.Any(cliente => cliente.Code == request.Produto))
                 .WithName("Produto")
                 .WithMessage("Não encontrado");
-            }); ;
+            });
 
             RuleFor(request => request)
             .Must(request => !request.Atendimento.HasValue)
