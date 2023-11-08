@@ -1,0 +1,108 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "cleanapi",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "clean",
+        "${workspaceFolder}/src/Missao.Api/Missao.Api.csproj"
+      ],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "buildapi",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "build",
+        "${workspaceFolder}/src/Missao.Api/Missao.Api.csproj"
+      ],
+      "problemMatcher": "$msCompile",
+      "dependsOn": ["cleanapi"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "unit test",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "test",
+        "${workspaceFolder}/src/Missao.UnitTest/Missao.UnitTest.csproj"
+      ],
+      "problemMatcher": "$msCompile",
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "test with coverage",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "test",
+        "/p:CollectCoverage=true",
+        "/p:CoverletOutputFormat=lcov",
+        "/p:CoverletOutput=../../coverage/lcov.info",
+        "${workspaceFolder}/src/Missao.UnitTest/Missao.UnitTest.csproj"
+      ],
+      "problemMatcher": "$msCompile",
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "test coverage to report",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "test",
+        "/p:CollectCoverage=true",
+        "/p:CoverletOutputFormat=cobertura",
+        "${workspaceFolder}/src/Missao.UnitTest/Missao.UnitTest.csproj"
+      ],
+      "problemMatcher": "$msCompile",
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "generate report coverage",
+      "command": "reportgenerator",
+      "type": "process",
+      "args": [
+        "-reports:\"${workspaceFolder}/src/Missao.UnitTest/coverage.cobertura.xml\"",
+        "-targetdir:\"${workspaceFolder}/src/Missao.UnitTest/coveragereport\"",
+        "-reporttypes:Html"
+      ],
+      "problemMatcher": "$msCompile",
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "dependsOn": ["test coverage to report"]
+    },
+    {
+      "label": "sonar",
+      "type": "shell",
+      "windows": {
+        "command": "${workspaceFolder}\\scripts\\sonar.bat"
+      },
+      "osx": {
+        "command": "${workspaceFolder}/scripts/sonar.sh"
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": []
+    }
+  ]
+}
