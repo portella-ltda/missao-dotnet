@@ -46,7 +46,14 @@ namespace Missaol.Application.Cliente
             RuleFor(request => request)
             .Must(request => !request.Ambiente.HasValue)
             .WithName("Ambiente")
-            .WithMessage("Obrigatório");
+            .WithMessage("Obrigatório")
+            .DependentRules(() =>
+            {
+                RuleFor(request => request)
+                .Must(request => db.Ambientes.Any(ambiente => ambiente.Code == request.Ambiente))
+                .WithName("Ambiente")
+                .WithMessage("Não encontrado");
+            });
         }
     }
 }
