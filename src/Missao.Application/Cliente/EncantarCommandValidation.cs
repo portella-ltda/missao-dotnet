@@ -20,6 +20,11 @@ namespace Missaol.Application.Cliente
             .Must(request => !request.Atendimento.HasValue)
             .WithName("Atendimento")
             .WithMessage("Obrigatório");
+
+            RuleFor(request => request)
+            .Must(request => !request.Ambiente.HasValue)
+            .WithName("Ambiente")
+            .WithMessage("Obrigatório");
         }
     }
 }

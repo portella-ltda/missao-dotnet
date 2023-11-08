@@ -8,5 +8,6 @@ namespace Missaol.Application.Cliente
         public Guid? Cliente { get; set; }
         public Guid? Produto { get; set; }
         public Guid? Atendimento { get; set; }
+        public Guid? Ambiente { get; set; }
     }
 }
