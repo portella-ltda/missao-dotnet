@@ -1,15 +1,23 @@
 ﻿using FluentValidation;
+using System.Linq;
 
 namespace Missaol.Application.Cliente
 {
     public sealed class EncantarCommandValidation : AbstractValidator<EncantarCommandRequest>
     {
-        public EncantarCommandValidation()
+        public EncantarCommandValidation(IDataAccess db)
         {
             RuleFor(request => request)
             .Must(request => !request.Cliente.HasValue)
             .WithName("Cliente")
-            .WithMessage("Obrigatório");
+            .WithMessage("Obrigatório")
+            .DependentRules(() =>
+            {
+                RuleFor(request => request)
+                .Must(request => db.Clientes.Any(cliente => cliente.Code == request.Cliente))
+                .WithName("Cliente")
+                .WithMessage("Não encontrado");
+            });
 
             RuleFor(request => request)
             .Must(request => !request.Produto.HasValue)
