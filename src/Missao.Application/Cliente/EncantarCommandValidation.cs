@@ -26,9 +26,20 @@ namespace Missaol.Application.Cliente
             .DependentRules(() =>
             {
                 RuleFor(request => request)
-                .Must(request => db.Produtos.Any(produto => produto.Code == request.Produto))
+                .Must(request =>
+                {
+                    request.ProdutoDTO = db.Produtos.SingleOrDefault(produto => produto.Code == request.Produto);
+                    return request.ProdutoDTO != default;
+                })
                 .WithName("Produto")
-                .WithMessage("Não encontrado");
+                .WithMessage("Não encontrado")
+                .DependentRules(() =>
+                {
+                    RuleFor(request => request)
+                    .Must(request => request.ProdutoDTO.Qualidade?.Minima != default)
+                    .WithName("Qualidade para o produto")
+                    .WithMessage("Não encontrado");
+                });
             });
 
             RuleFor(request => request)
@@ -38,9 +49,20 @@ namespace Missaol.Application.Cliente
             .DependentRules(() =>
             {
                 RuleFor(request => request)
-                .Must(request => db.Atendimentos.Any(atendimento => atendimento.Code == request.Atendimento))
+                .Must(request =>
+                {
+                    request.AtendimentoDTO = db.Atendimentos.SingleOrDefault(atendimento => atendimento.Code == request.Atendimento);
+                    return request.AtendimentoDTO != default;
+                })
                 .WithName("Atendimento")
-                .WithMessage("Não encontrado");
+                .WithMessage("Não encontrado")
+                .DependentRules(() =>
+                {
+                    RuleFor(request => request)
+                    .Must(request => request.AtendimentoDTO.Nivel?.Minimo != default)
+                    .WithName("Nível para o atendimento")
+                    .WithMessage("Não encontrado");
+                });
             });
 
             RuleFor(request => request)
@@ -50,9 +72,20 @@ namespace Missaol.Application.Cliente
             .DependentRules(() =>
             {
                 RuleFor(request => request)
-                .Must(request => db.Ambientes.Any(ambiente => ambiente.Code == request.Ambiente))
+                .Must(request =>
+                {
+                    request.AmbienteDTO = db.Ambientes.SingleOrDefault(ambiente => ambiente.Code == request.Ambiente);
+                    return request.AmbienteDTO != default;
+                })
                 .WithName("Ambiente")
-                .WithMessage("Não encontrado");
+                .WithMessage("Não encontrado")
+                .DependentRules(() =>
+                {
+                    RuleFor(request => request)
+                    .Must(request => request.AmbienteDTO.Agrado?.Minimo != default)
+                    .WithName("Agrado para o ambiente")
+                    .WithMessage("Não encontrado");
+                });
             });
         }
     }
