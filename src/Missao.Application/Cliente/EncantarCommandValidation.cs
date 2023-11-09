@@ -36,7 +36,7 @@ namespace Missaol.Application.Cliente
                 .DependentRules(() =>
                 {
                     RuleFor(request => request)
-                    .Must(request => request.ProdutoDTO.Qualidade != null)
+                    .Must(request => request.ProdutoDTO.Qualidade?.Minima != default)
                     .WithName("Qualidade para o produto")
                     .WithMessage("Não encontrado");
                 });
@@ -59,7 +59,7 @@ namespace Missaol.Application.Cliente
                 .DependentRules(() =>
                 {
                     RuleFor(request => request)
-                    .Must(request => request.AtendimentoDTO.Nivel != null)
+                    .Must(request => request.AtendimentoDTO.Nivel?.Minimo != default)
                     .WithName("Nível para o atendimento")
                     .WithMessage("Não encontrado");
                 });
@@ -82,7 +82,7 @@ namespace Missaol.Application.Cliente
                 .DependentRules(() =>
                 {
                     RuleFor(request => request)
-                    .Must(request => request.AmbienteDTO.Agrado != null)
+                    .Must(request => request.AmbienteDTO.Agrado?.Minimo != default)
                     .WithName("Agrado para o ambiente")
                     .WithMessage("Não encontrado");
                 });
