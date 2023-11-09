@@ -31,6 +31,16 @@ namespace Missaol.Application.Cliente
                 .WithMessage("Não encontrado");
             });
 
+            When(request =>
+                request.Produto.HasValue,
+                () =>
+                {
+                    RuleFor(request => request)
+                    .Must(request => db.Qualidades.Any(qualidade => qualidade.Produto.Code == request.Produto))
+                    .WithName("Qualidade")
+                    .WithMessage("Não definida pra esse produto");
+                });
+
             RuleFor(request => request)
             .Must(request => !request.Atendimento.HasValue)
             .WithName("Atendimento")
