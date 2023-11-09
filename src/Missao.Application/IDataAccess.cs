@@ -38,6 +38,12 @@ namespace Missaol.Application
         public class Ambiente
         {
             public Guid? Code { get; set; }
+            public Agrado Agrado { get; set; }
         }
+        public class Agrado
+        {
+            public decimal? Minimo { get; set; }
+        }
+
     }
 }
