@@ -16,7 +16,7 @@ namespace Missaol.Application.Cliente
             if (
                 request.ProdutoNota >= request.ProdutoDTO.Qualidade.Minima &&
                 request.AtendimentoNota >= request.AtendimentoDTO.Nivel.Minimo &&
-                request.AmbineteNota >= request.AmbienteDTO.Agrado.Minimo
+                request.AmbienteNota >= request.AmbienteDTO.Agrado.Minimo
             )
                 await Mediator.Publish(new EncantadoCommandNotification(), cancellationToken);
         }
