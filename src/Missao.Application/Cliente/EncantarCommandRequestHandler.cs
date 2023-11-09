@@ -17,13 +17,13 @@ namespace Missaol.Application.Cliente
         {
             var maximo = RequsitosEnumerar(request).Count();
             var atingido = RequsitosEnumerar(request).Where(success => success).Count();
-            if (maximo == atingido)
+            if (atingido == maximo)
             {
                 await Mediator.Publish(new EncantadoCommandNotification(), cancellationToken);
                 return;
             }
 
-            if ((maximo / atingido) >= 50)
+            if ((atingido / maximo) >= 50)
             {
                 await Mediator.Publish(new EncantadoParcialmenteCommandNotification(), cancellationToken);
                 return;
