@@ -17,6 +17,7 @@ namespace Missaol.Application.Cliente
         {
             var maximo = RequsitosEnumerar(request).Count();
             var atingido = RequsitosEnumerar(request).Where(success => success).Count();
+            
             if ((atingido / maximo) < 50)
             {
                 await Mediator.Publish(new EncantadoNegativoCommandNotification(), cancellationToken);
@@ -30,7 +31,6 @@ namespace Missaol.Application.Cliente
             }
 
             await Mediator.Publish(new EncantadoCommandNotification(), cancellationToken);
-
         }
 
         private static IEnumerable<bool> RequsitosEnumerar(EncantarCommandRequest request)
