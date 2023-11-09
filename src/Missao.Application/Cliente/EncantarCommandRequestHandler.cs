@@ -15,7 +15,9 @@ namespace Missaol.Application.Cliente
         }
         public async Task Handle(EncantarCommandRequest request, CancellationToken cancellationToken)
         {
-            if (RequsitosEnumerar(request).All(success => success))
+            var maximo = RequsitosEnumerar(request).Count();
+            var atingido = RequsitosEnumerar(request).Where(success => success).Count();
+            if (maximo == atingido)
                 await Mediator.Publish(new EncantadoCommandNotification(), cancellationToken);
         }
 
