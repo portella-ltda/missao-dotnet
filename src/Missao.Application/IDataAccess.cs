@@ -28,6 +28,12 @@ namespace Missaol.Application
         public class Atendimento
         {
             public Guid? Code { get; set; }
+
+            public Nivel Nivel { get; set; }
+        }
+        public class Nivel
+        {
+            public decimal? Minimo { get; set; }
         }
         public class Ambiente
         {

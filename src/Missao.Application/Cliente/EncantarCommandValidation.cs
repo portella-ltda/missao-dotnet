@@ -49,9 +49,20 @@ namespace Missaol.Application.Cliente
             .DependentRules(() =>
             {
                 RuleFor(request => request)
-                .Must(request => db.Atendimentos.Any(atendimento => atendimento.Code == request.Atendimento))
+                .Must(request =>
+                {
+                    request.AtendimentoDTO = db.Atendimentos.SingleOrDefault(atendimento => atendimento.Code == request.Atendimento);
+                    return request.AtendimentoDTO != default;
+                })
                 .WithName("Atendimento")
-                .WithMessage("Não encontrado");
+                .WithMessage("Não encontrado")
+                .DependentRules(() =>
+                {
+                    RuleFor(request => request)
+                    .Must(request => request.AtendimentoDTO.Nivel != null)
+                    .WithName("Nível para o atendimento")
+                    .WithMessage("Não encontrado");
+                });
             });
 
             RuleFor(request => request)

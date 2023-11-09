@@ -9,6 +9,7 @@ namespace Missaol.Application.Cliente
         public Guid? Produto { get; set; }
         public Guid? Atendimento { get; set; }
         public Guid? Ambiente { get; set; }
+        internal IDataAccess.Atendimento AtendimentoDTO { get; set; }
         internal IDataAccess.Produto ProdutoDTO { get; set; }
     }
 }
