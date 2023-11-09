@@ -13,7 +13,12 @@ namespace Missaol.Application.Cliente
         }
         public async Task Handle(EncantarCommandRequest request, CancellationToken cancellationToken)
         {
-            await Mediator.Publish(new EncantadoCommandNotification(), cancellationToken);
+            if (
+                request.ProdutoNota >= request.ProdutoDTO.Qualidade.Minima &&
+                request.AtendimentoNota >= request.AtendimentoDTO.Nivel.Minimo &&
+                request.AmbineteNota >= request.AmbienteDTO.Agrado.Minimo
+            )
+                await Mediator.Publish(new EncantadoCommandNotification(), cancellationToken);
         }
     }
 }
