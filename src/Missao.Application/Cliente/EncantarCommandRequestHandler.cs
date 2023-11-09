@@ -1,4 +1,6 @@
 ﻿using MediatR;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -13,12 +15,15 @@ namespace Missaol.Application.Cliente
         }
         public async Task Handle(EncantarCommandRequest request, CancellationToken cancellationToken)
         {
-            if (
-                request.ProdutoNota >= request.ProdutoDTO.Qualidade.Minima &&
-                request.AtendimentoNota >= request.AtendimentoDTO.Nivel.Minimo &&
-                request.AmbienteNota >= request.AmbienteDTO.Agrado.Minimo
-            )
+            if (RequsitosEnumerar(request).All(success => success))
                 await Mediator.Publish(new EncantadoCommandNotification(), cancellationToken);
+        }
+
+        private static IEnumerable<bool> RequsitosEnumerar(EncantarCommandRequest request)
+        {
+            yield return request.ProdutoNota >= request.ProdutoDTO.Qualidade.Minima;
+            yield return request.AtendimentoNota >= request.AtendimentoDTO.Nivel.Minimo;
+            yield return request.AmbienteNota >= request.AmbienteDTO.Agrado.Minimo;
         }
     }
 }
