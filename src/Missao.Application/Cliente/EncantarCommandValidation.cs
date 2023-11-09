@@ -1,6 +1,5 @@
 ﻿using FluentValidation;
 using System.Linq;
-using System.Text;
 
 namespace Missaol.Application.Cliente
 {
