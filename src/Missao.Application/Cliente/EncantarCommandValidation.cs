@@ -28,18 +28,15 @@ namespace Missaol.Application.Cliente
                 RuleFor(request => request)
                 .Must(request => db.Produtos.Any(produto => produto.Code == request.Produto))
                 .WithName("Produto")
-                .WithMessage("Não encontrado");
-            });
-
-            When(request =>
-                request.Produto.HasValue,
-                () =>
+                .WithMessage("Não encontrado")
+                .DependentRules(() =>
                 {
                     RuleFor(request => request)
-                    .Must(request => db.Qualidades.Any(qualidade => qualidade.Produto.Code == request.Produto))
-                    .WithName("Qualidade")
-                    .WithMessage("Não definida pra esse produto");
+                    .Must(request => db.Produtos.Any(produto => produto.Qualidade != null))
+                    .WithName("Qualidade para o produto")
+                    .WithMessage("Não encontrado");
                 });
+            });
 
             RuleFor(request => request)
             .Must(request => !request.Atendimento.HasValue)

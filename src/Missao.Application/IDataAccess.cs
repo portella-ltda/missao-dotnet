@@ -7,7 +7,6 @@ namespace Missaol.Application
     {
         public ICollection<Cliente> Clientes { get; set; }
         public ICollection<Produto> Produtos { get; set; }
-        ICollection<Qualidade> Qualidades { get; set; }
         public ICollection<Atendimento> Atendimentos { get; set; }
         public ICollection<Ambiente> Ambientes { get; set; }
 
@@ -18,11 +17,12 @@ namespace Missaol.Application
         public class Produto
         {
             public Guid? Code { get; set; }
+
+            public Qualidade Qualidade { get; set; }
         }
 
         public class Qualidade
         {
-            public Produto Produto { get; set; }
             public decimal? Minima { get; set;}
         }
         public class Atendimento
