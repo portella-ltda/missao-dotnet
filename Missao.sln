@@ -5,6 +5,8 @@ VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Missao.Application", "src\Missao.Application\Missao.Application.csproj", "{800F63EC-F3B4-4441-B7BA-9AB3CBCC60F6}"
 EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Missao.Angular", "Missao.Angular\Missao.Angular.esproj", "{A4D6BA37-0760-4334-9064-9220DDC36340}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,12 @@ Global
 		{800F63EC-F3B4-4441-B7BA-9AB3CBCC60F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{800F63EC-F3B4-4441-B7BA-9AB3CBCC60F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{800F63EC-F3B4-4441-B7BA-9AB3CBCC60F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4D6BA37-0760-4334-9064-9220DDC36340}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4D6BA37-0760-4334-9064-9220DDC36340}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4D6BA37-0760-4334-9064-9220DDC36340}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{A4D6BA37-0760-4334-9064-9220DDC36340}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4D6BA37-0760-4334-9064-9220DDC36340}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4D6BA37-0760-4334-9064-9220DDC36340}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
