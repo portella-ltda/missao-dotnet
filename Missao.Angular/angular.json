@@ -101,5 +101,7 @@
       }
     }
   },
-  "defaultProject": "Missao.Angular"
+  "cli": {
+    "analytics": false
+  }
 }
