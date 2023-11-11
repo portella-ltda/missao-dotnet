@@ -67,10 +67,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "Missao.Angular:build:production"
+              "buildTarget": "Missao.Angular:build:production"
             },
             "development": {
-              "browserTarget": "Missao.Angular:build:development"
+              "buildTarget": "Missao.Angular:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -78,7 +78,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Missao.Angular:build"
+            "buildTarget": "Missao.Angular:build"
           }
         },
         "test": {
