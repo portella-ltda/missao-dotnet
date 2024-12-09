@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Missaol.Application
+namespace Library
 {
     public interface IDataAccess
     {

@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Missaol.Application.Cliente
+namespace Library.Cliente
 {
     public sealed class EncantadoCommandNotification : INotification
     {

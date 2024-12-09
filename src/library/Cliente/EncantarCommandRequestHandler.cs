@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Missaol.Application.Cliente
+namespace Library.Cliente
 {
     public sealed class EncantarCommandRequestHandler : IRequestHandler<EncantarCommandRequest>
     {

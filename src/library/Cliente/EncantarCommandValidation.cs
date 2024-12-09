@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using System.Linq;
 
-namespace Missaol.Application.Cliente
+namespace Library.Cliente
 {
     public sealed class EncantarCommandValidation : AbstractValidator<EncantarCommandRequest>
     {

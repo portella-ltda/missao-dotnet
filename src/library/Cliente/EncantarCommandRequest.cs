@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using System;
 
-namespace Missaol.Application.Cliente
+namespace Library.Cliente
 {
     public sealed class EncantarCommandRequest : IRequest
     {
