@@ -3,7 +3,7 @@ using System;
 
 namespace Library.Cliente
 {
-    public sealed class EncantarCommandRequest : IRequest
+    public sealed class EncantarRequest : IRequest
     {
         public Guid? Cliente { get; set; }
         public Guid? Produto { get; set; }

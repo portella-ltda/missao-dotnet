@@ -3,9 +3,9 @@ using System.Linq;
 
 namespace Library.Cliente
 {
-    public sealed class EncantarCommandValidation : AbstractValidator<EncantarCommandRequest>
+    public sealed class EncantarValidation : AbstractValidator<EncantarRequest>
     {
-        public EncantarCommandValidation(IDataAccess db)
+        public EncantarValidation(IDataAccess db)
         {
             RuleFor(request => request)
             .Must(request => !request.Cliente.HasValue)
